@@ -1,0 +1,385 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Card from '../../shared/components/Card';
+import skill_icon from '../../assets/images/icons/skill_icon.png';
+import project_icon from '../../assets/images/icons/project_icon.png';
+import profile from '../../assets/images/profile.jpg';
+
+const About = () => {
+  // Animation on scroll effect
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    return () => {
+      animatedElements.forEach(element => {
+        observer.unobserve(element);
+      });
+    };
+  }, []);
+
+  // State for skills
+  const [skills, setSkills] = useState([
+    { name: 'JavaScript', level: 90, icon: '⚡' },
+    { name: 'React', level: 85, icon: '⚛️' },
+    { name: 'Node.js', level: 80, icon: '🔧' },
+    { name: 'CSS/HTML5', level: 95, icon: '🎨' },
+    { name: 'Phaser.js', level: 75, icon: '🎮' },
+    { name: 'Pixi.js', level: 70, icon: '📱' }
+  ]);
+
+  const [projects, setProjects] = useState([
+    {
+      name: 'Project Alpha',
+      description: 'A dynamic web application with real-time data visualization.',
+      technologies: ['React', 'Node.js', 'Socket.io'],
+      featured: true,
+      color: '#4F46E5'
+    },
+    {
+      name: 'Game Portal',
+      description: 'Browser-based gaming platform with multiplayer support.',
+      technologies: ['JavaScript', 'Phaser.js', 'Firebase'],
+      featured: true,
+      color: '#10B981'
+    },
+    {
+      name: 'Finance Dashboard',
+      description: 'Interactive dashboard for financial data analysis.',
+      technologies: ['React', 'D3.js', 'REST API'],
+      featured: false,
+      color: '#F59E0B'
+    },
+    {
+      name: 'Mobile App UI',
+      description: 'Clean, modern UI components for mobile applications.',
+      technologies: ['React Native', 'Styled Components'],
+      featured: false,
+      color: '#EC4899'
+    }
+  ]);
+
+  // Tab state for experience section
+  const [activeTab, setActiveTab] = useState('experience');
+
+  // State for counters with animation
+  const [counters] = useState({
+    years: 2.5,
+    clients: 10,
+    projects: 20
+  });
+
+  // Project filter state
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const filteredProjects = activeFilter === 'all'
+    ? projects
+    : activeFilter === 'featured'
+      ? projects.filter(project => project.featured)
+      : projects.filter(project =>
+        project.technologies.includes(activeFilter)
+      );
+
+  // Personal interests
+  const interests = ['Game Development', 'UI/UX Design', 'New Technologies', 'Chess', 'Photography'];
+
+  return (
+    <div className="about-page">
+      {/* About Me Section */}
+      <section className="about-me-section">
+        <div className="section-header animate-on-scroll">
+          <span className="section-subtitle">About Me</span>
+          <h2 className="section-title">My Story</h2>
+        </div>
+
+        <div className="about-content">
+          <div className="about-text animate-on-scroll">
+            <p>
+              I'm a passionate Web & Game Developer with {counters.years}+ years of experience in building
+              fast, interactive, and engaging digital experiences. From dynamic web apps to browser-based
+              games, I bring ideas to life using modern technologies like JavaScript, React.js, Phaser.js, and Pixi.js.
+            </p>
+            <p>
+              I love crafting intuitive user interfaces, optimizing performance, and developing scalable front-end systems.
+              Currently working at Yudiz Solutions Ltd., I specialize in creating responsive websites and interactive gaming experiences.
+            </p>
+
+            <div className="interests-container">
+              <h3>My Interests</h3>
+              <div className="interests-list">
+                {interests.map((interest, index) => (
+                  <div key={index} className="interest-badge">
+                    {interest}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <Link to="/resume" className="resume-btn">
+              <span>Download Resume</span>
+              <span className="btn-icon">↓</span>
+            </Link>
+          </div>
+
+          <div className="skills-container animate-on-scroll">
+            <h3>Skills & Expertise</h3>
+            <div className="skills-list">
+              {skills.map((skill) => (
+                <div key={skill.name} className="skill-card">
+                  <div className="skill-icon">{skill.icon}</div>
+                  <div className="skill-info">
+                    <div className="skill-header">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className="skill-level">{skill.level}%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" style={{ width: `${skill.level}%` }}></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience & Education */}
+      <section className="experience-section">
+        <div className="section-header animate-on-scroll">
+          <span className="section-subtitle">My Journey</span>
+          <h2 className="section-title">Experience & Education</h2>
+        </div>
+
+        <div className="tabs-container animate-on-scroll">
+          <div className="tab-buttons">
+            <button
+              className={`tab-btn ${activeTab === 'experience' ? 'active' : ''}`}
+              onClick={() => setActiveTab('experience')}
+            >
+              <span>Work Experience</span>
+            </button>
+            <button
+              className={`tab-btn ${activeTab === 'education' ? 'active' : ''}`}
+              onClick={() => setActiveTab('education')}
+            >
+              <span>Education</span>
+            </button>
+          </div>
+
+          <div className="tab-content">
+            {/* Experience Tab */}
+            <div className={`tab-pane ${activeTab === 'experience' ? 'active' : ''}`}>
+              <div className="timeline">
+                <div className="timeline-item">
+                  <div className="timeline-marker"></div>
+                  <div className="timeline-content">
+                    <span className="timeline-date">2022 - Present</span>
+                    <h3 className="timeline-title">Frontend Developer</h3>
+                    <p className="timeline-company">Yudiz Solutions Ltd.</p>
+                    <p className="timeline-description">
+                      Developing responsive web applications and browser-based games using modern JavaScript frameworks.
+                      Leading UI/UX implementation and optimizing application performance.
+                    </p>
+                    <div className="timeline-tags">
+                      <span className="tag">React</span>
+                      <span className="tag">JavaScript</span>
+                      <span className="tag">Game Dev</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="timeline-item">
+                  <div className="timeline-marker"></div>
+                  <div className="timeline-content">
+                    <span className="timeline-date">2021 - 2022</span>
+                    <h3 className="timeline-title">Junior Web Developer</h3>
+                    <p className="timeline-company">Tech Startup</p>
+                    <p className="timeline-description">
+                      Built and maintained client websites using HTML, CSS, and JavaScript.
+                      Collaborated with design team to implement responsive layouts.
+                    </p>
+                    <div className="timeline-tags">
+                      <span className="tag">HTML/CSS</span>
+                      <span className="tag">JavaScript</span>
+                      <span className="tag">Responsive Design</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Education Tab */}
+            <div className={`tab-pane ${activeTab === 'education' ? 'active' : ''}`}>
+              <div className="timeline">
+                <div className="timeline-item">
+                  <div className="timeline-marker"></div>
+                  <div className="timeline-content">
+                    <span className="timeline-date">2018 - 2021</span>
+                    <h3 className="timeline-title">Bachelor of Computer Science</h3>
+                    <p className="timeline-company">University Name</p>
+                    <p className="timeline-description">
+                      Focused on web development and computer programming. Graduated with honors.
+                      Participated in coding competitions and hackathons.
+                    </p>
+                    <div className="timeline-tags">
+                      <span className="tag">Computer Science</span>
+                      <span className="tag">Programming</span>
+                      <span className="tag">Web Development</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="timeline-item">
+                  <div className="timeline-marker"></div>
+                  <div className="timeline-content">
+                    <span className="timeline-date">2020</span>
+                    <h3 className="timeline-title">Web Development Bootcamp</h3>
+                    <p className="timeline-company">Coding Academy</p>
+                    <p className="timeline-description">
+                      Intensive 3-month program covering modern web technologies including
+                      React, Node.js, and database management.
+                    </p>
+                    <div className="timeline-tags">
+                      <span className="tag">React</span>
+                      <span className="tag">Node.js</span>
+                      <span className="tag">Full Stack</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className="projects-section">
+        <div className="section-header animate-on-scroll">
+          <span className="section-subtitle">My Work</span>
+          <h2 className="section-title">Recent Projects</h2>
+        </div>
+
+        <div className="projects-filter animate-on-scroll">
+          <button
+            className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('all')}
+          >
+            All Projects
+          </button>
+          <button
+            className={`filter-btn ${activeFilter === 'featured' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('featured')}
+          >
+            Featured
+          </button>
+          <button
+            className={`filter-btn ${activeFilter === 'React' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('React')}
+          >
+            React
+          </button>
+          <button
+            className={`filter-btn ${activeFilter === 'JavaScript' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('JavaScript')}
+          >
+            JavaScript
+          </button>
+        </div>
+
+        <div className="projects-grid">
+          {filteredProjects.map((project, index) => (
+            <div
+              key={project.name}
+              className="project-card animate-on-scroll"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="project-card-inner">
+                <div className="project-header" style={{ backgroundColor: project.color }}>
+                  <img src={project_icon} alt="Project Icon" className="project-icon" />
+                </div>
+                <div className="project-body">
+                  <h3 className="project-title">{project.name}</h3>
+                  <p className="project-description">{project.description}</p>
+                  <div className="project-tech">
+                    {project.technologies.map(tech => (
+                      <span key={tech} className="tech-badge">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="project-footer">
+                  <Link to={`/project/${project.name.toLowerCase().replace(/\s+/g, '-')}`} className="view-project-btn">
+                    <span>View Project</span>
+                    <span className="arrow">→</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="view-all-container animate-on-scroll">
+          <Link to="/portfolio" className="view-all-btn">
+            <span>View All Projects</span>
+            <span className="btn-icon">→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="contact-section animate-on-scroll">
+        <div className="contact-card">
+          <div className="contact-info">
+            <h2 className="contact-title">Let's work <span className="gradient-text">together!</span></h2>
+            <p className="contact-text">
+              Have a project in mind or just want to say hello?
+              I'm always open to new opportunities and challenges.
+            </p>
+            <Link to="/contact" className="contact-btn">
+              <span>Contact Me</span>
+              <span className="btn-icon">→</span>
+            </Link>
+          </div>
+
+          <div className="social-links">
+            <a href="#" className="social-link">
+              <div className="social-icon">FB</div>
+              <span className="social-name">Facebook</span>
+            </a>
+            <a href="#" className="social-link">
+              <div className="social-icon">LI</div>
+              <span className="social-name">LinkedIn</span>
+            </a>
+            <a href="#" className="social-link">
+              <div className="social-icon">IG</div>
+              <span className="social-name">Instagram</span>
+            </a>
+            <a href="#" className="social-link">
+              <div className="social-icon">GH</div>
+              <span className="social-name">GitHub</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default About;

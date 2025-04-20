@@ -1,0 +1,38 @@
+.header-public {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    // background: linear-gradient(to bottom, var(--primary-color),#bac6d0);
+
+    .header-public__logo {
+        h3 {
+            color: var(--text-color);
+        }
+    }
+
+    .header-public__menu {
+        width: 50%;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-evenly;
+            list-style: none;
+
+            li {
+                a {
+                    color: var(--text-color);
+                    text-decoration: none;
+                }
+
+                a:hover {
+                    color: var(--hover-color);
+                }
+            }
+        }
+    }
+}
