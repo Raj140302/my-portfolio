@@ -105,7 +105,7 @@ const Home = () => {
             </p>
 
             <div className="hero-buttons">
-              <Link to="/work" className="primary-btn">
+              <Link to="/projects" className="primary-btn">
                 <span>View My Work</span>
                 <span className="btn-icon">→</span>
               </Link>

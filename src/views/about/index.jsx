@@ -44,36 +44,33 @@ const About = () => {
     { name: 'Pixi.js', level: 70, icon: '📱' }
   ]);
 
-  const [projects, setProjects] = useState([
+  const projects = [
     {
-      name: 'Project Alpha',
-      description: 'A dynamic web application with real-time data visualization.',
-      technologies: ['React', 'Node.js', 'Socket.io'],
+      name: 'BiryaniBet',
+      description: 'BiryaniBet is a leading online gaming platform offering a wide range of games and betting options.',
+      technologies: ['React', 'Phaser', 'Socket.io'],
       featured: true,
       color: '#4F46E5'
     },
     {
-      name: 'Game Portal',
-      description: 'Browser-based gaming platform with multiplayer support.',
-      technologies: ['JavaScript', 'Phaser.js', 'Firebase'],
+      name: `21 Hold'em`,
+      description: `21 Hold'em is a multiplayer poker jack game platform with real-time participation, interactive tables, and secure authentication.`,
+      technologies: ['React', 'Phaser', 'Socket.io'],
       featured: true,
       color: '#10B981'
     },
     {
-      name: 'Finance Dashboard',
-      description: 'Interactive dashboard for financial data analysis.',
-      technologies: ['React', 'D3.js', 'REST API'],
+      name: 'Viksit Bharat Sankalp',
+      description: 'Played a key role in a nationwide awareness campaign for government schemes, featured in the NAMO App.',
+      technologies: ['HTML5', 'Phaser'],
       featured: false,
       color: '#F59E0B'
     },
-    {
-      name: 'Mobile App UI',
-      description: 'Clean, modern UI components for mobile applications.',
-      technologies: ['React Native', 'Styled Components'],
-      featured: false,
-      color: '#EC4899'
-    }
-  ]);
+  ];
+  const [filteredProjects, setFilteredProjects] = useState(projects);
+
+  // Project filter state
+  const [activeFilter, setActiveFilter] = useState('all');
 
   // Tab state for experience section
   const [activeTab, setActiveTab] = useState('experience');
@@ -85,19 +82,22 @@ const About = () => {
     projects: 20
   });
 
-  // Project filter state
-  const [activeFilter, setActiveFilter] = useState('all');
-
-  const filteredProjects = activeFilter === 'all'
-    ? projects
-    : activeFilter === 'featured'
-      ? projects.filter(project => project.featured)
-      : projects.filter(project =>
+  // Filter projects directly based on the active filter
+  const getFilteredProjects = () => {
+    if (activeFilter === 'all') {
+      setFilteredProjects(projects);
+    } else if (activeFilter === 'featured') {
+      setFilteredProjects(projects.filter(project => project.featured));
+    } else {
+      setFilteredProjects(projects.filter(project =>
         project.technologies.includes(activeFilter)
-      );
+      ));
+    }
+  };
 
+  // Get filtered projects on the fly
   // Personal interests
-  const interests = ['Game Development', 'UI/UX Design', 'New Technologies', 'Chess', 'Photography'];
+  const interests = ['Photography', 'Coding', 'Traveling', 'Playing Sports'];
 
   return (
     <div className="about-page">
@@ -131,10 +131,13 @@ const About = () => {
               </div>
             </div>
 
-            <Link to="/resume" className="resume-btn">
+            <a href="https://drive.google.com/file/d/15SVbfHC192jAPsura0ZNel9U-0UAQwqG/view?usp=sharing"
+              className="resume-btn"
+              target="_blank"
+              rel="noopener noreferrer">
               <span>Download Resume</span>
               <span className="btn-icon">↓</span>
-            </Link>
+            </a>
           </div>
 
           <div className="skills-container animate-on-scroll">
@@ -189,35 +192,22 @@ const About = () => {
                 <div className="timeline-item">
                   <div className="timeline-marker"></div>
                   <div className="timeline-content">
-                    <span className="timeline-date">2022 - Present</span>
+                    <span className="timeline-date">2023 - Present</span>
                     <h3 className="timeline-title">Frontend Developer</h3>
                     <p className="timeline-company">Yudiz Solutions Ltd.</p>
                     <p className="timeline-description">
                       Developing responsive web applications and browser-based games using modern JavaScript frameworks.
-                      Leading UI/UX implementation and optimizing application performance.
+                      Working with the wider development team.
+                      Collaborated with designers and backend developers to build
+                      scalable and maintainable web solutions.
                     </p>
                     <div className="timeline-tags">
-                      <span className="tag">React</span>
                       <span className="tag">JavaScript</span>
-                      <span className="tag">Game Dev</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="timeline-item">
-                  <div className="timeline-marker"></div>
-                  <div className="timeline-content">
-                    <span className="timeline-date">2021 - 2022</span>
-                    <h3 className="timeline-title">Junior Web Developer</h3>
-                    <p className="timeline-company">Tech Startup</p>
-                    <p className="timeline-description">
-                      Built and maintained client websites using HTML, CSS, and JavaScript.
-                      Collaborated with design team to implement responsive layouts.
-                    </p>
-                    <div className="timeline-tags">
-                      <span className="tag">HTML/CSS</span>
-                      <span className="tag">JavaScript</span>
-                      <span className="tag">Responsive Design</span>
+                      <span className="tag">React JS</span>
+                      <span className="tag">Phaser JS</span>
+                      <span className="tag">Three JS</span>
+                      <span className="tag">Babylon JS</span>
+                      <span className="tag">Pixi JS</span>
                     </div>
                   </div>
                 </div>
@@ -230,15 +220,14 @@ const About = () => {
                 <div className="timeline-item">
                   <div className="timeline-marker"></div>
                   <div className="timeline-content">
-                    <span className="timeline-date">2018 - 2021</span>
-                    <h3 className="timeline-title">Bachelor of Computer Science</h3>
-                    <p className="timeline-company">University Name</p>
+                    <span className="timeline-date">2019 - 2023</span>
+                    <h3 className="timeline-title">Bachelor of Engineering (Information Technology)</h3>
+                    <p className="timeline-company">Saffrony Institute of Technology, Mehsana</p>
                     <p className="timeline-description">
                       Focused on web development and computer programming. Graduated with honors.
-                      Participated in coding competitions and hackathons.
+                      Participated in coding competitions and sports.
                     </p>
                     <div className="timeline-tags">
-                      <span className="tag">Computer Science</span>
                       <span className="tag">Programming</span>
                       <span className="tag">Web Development</span>
                     </div>
@@ -248,17 +237,34 @@ const About = () => {
                 <div className="timeline-item">
                   <div className="timeline-marker"></div>
                   <div className="timeline-content">
-                    <span className="timeline-date">2020</span>
-                    <h3 className="timeline-title">Web Development Bootcamp</h3>
-                    <p className="timeline-company">Coding Academy</p>
+                    <span className="timeline-date">2018-2019</span>
+                    <h3 className="timeline-title">HSC (12th Science)</h3>
+                    <p className="timeline-company">Sarva Vidyalaya, Kadi</p>
                     <p className="timeline-description">
-                      Intensive 3-month program covering modern web technologies including
-                      React, Node.js, and database management.
+                      Completed 12th from Sarva Vidyalaya, Kadi.
                     </p>
                     <div className="timeline-tags">
-                      <span className="tag">React</span>
-                      <span className="tag">Node.js</span>
-                      <span className="tag">Full Stack</span>
+                      {/* <span className="tag">Maths</span>
+                      <span className="tag">Camestry</span>
+                      <span className="tag">Full Stack</span> */}
+                    </div>
+                  </div>
+                </div>
+                <div className="timeline-item">
+                  <div className="timeline-marker"></div>
+                  <div className="timeline-content">
+                    <span className="timeline-date">2016-2017</span>
+                    <h3 className="timeline-title">SSC (10th)</h3>
+                    <p className="timeline-company">Panchshil Madhyamik Shala,
+                      Katosan Road</p>
+                    <p className="timeline-description">
+                      Completed 1oth from Panchshil Madhyamik Shala,
+                      Katosan Road.
+                    </p>
+                    <div className="timeline-tags">
+                      {/* <span className="tag">Maths</span>
+                      <span className="tag">Camestry</span>
+                      <span className="tag">Full Stack</span> */}
                     </div>
                   </div>
                 </div>
@@ -295,10 +301,22 @@ const About = () => {
             React
           </button>
           <button
-            className={`filter-btn ${activeFilter === 'JavaScript' ? 'active' : ''}`}
-            onClick={() => setActiveFilter('JavaScript')}
+            className={`filter-btn ${activeFilter === 'HTML5' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('HTML5')}
           >
-            JavaScript
+            HTML5
+          </button>
+          <button
+            className={`filter-btn ${activeFilter === 'Phaser' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('Phaser')}
+          >
+            Phaser
+          </button>
+          <button
+            className={`filter-btn ${activeFilter === 'Socket.io' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('Socket.io')}
+          >
+            Socket.io
           </button>
         </div>
 

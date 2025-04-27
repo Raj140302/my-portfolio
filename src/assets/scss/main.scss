@@ -5,6 +5,8 @@
 
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Layouts
+@import './layouts/main-layout/main-layout';
 // Components
 @import './components/data-table';
 @import './components/not-found';
