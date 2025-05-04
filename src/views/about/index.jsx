@@ -37,10 +37,9 @@ const About = () => {
   // State for skills
   const [skills, setSkills] = useState([
     { name: 'JavaScript', level: 90, icon: '⚡' },
-    { name: 'React', level: 85, icon: '⚛️' },
-    { name: 'Node.js', level: 80, icon: '🔧' },
+    { name: 'React', level: 80, icon: '⚛️' },
     { name: 'CSS/HTML5', level: 95, icon: '🎨' },
-    { name: 'Phaser.js', level: 75, icon: '🎮' },
+    { name: 'Phaser.js', level: 85, icon: '🎮' },
     { name: 'Pixi.js', level: 70, icon: '📱' }
   ]);
 
@@ -377,21 +376,21 @@ const About = () => {
           </div>
 
           <div className="social-links">
-            <a href="#" className="social-link">
-              <div className="social-icon">FB</div>
-              <span className="social-name">Facebook</span>
-            </a>
-            <a href="#" className="social-link">
+            <a href="https://www.linkedin.com/in/rajpatel1403?utm_source=share&utm_campaign=share_via&utm_content=profile" className="social-link" target="_blank" rel="noopener noreferrer">
               <div className="social-icon">LI</div>
               <span className="social-name">LinkedIn</span>
             </a>
-            <a href="#" className="social-link">
-              <div className="social-icon">IG</div>
-              <span className="social-name">Instagram</span>
-            </a>
-            <a href="#" className="social-link">
+            <a href="https://github.com/Raj140302" className="social-link" target="_blank" rel="noopener noreferrer">
               <div className="social-icon">GH</div>
               <span className="social-name">GitHub</span>
+            </a>
+            <a href="https://discord.com/users/1251574412965318708" className="social-link" target="_blank" rel="noopener noreferrer">
+              <div className="social-icon">DC</div>
+              <span className="social-name">Discord</span>
+            </a>
+            <a href="https://www.instagram.com/rajlo_1403?igsh=MTRid25reTVwYTd2NA==" className="social-link" target="_blank" rel="noopener noreferrer">
+              <div className="social-icon">IG</div>
+              <span className="social-name">Instagram</span>
             </a>
           </div>
         </div>

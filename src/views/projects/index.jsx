@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import project_icon from '../../assets/images/icons/project_icon.png';
+import biryanibet_1 from '../../assets/images/projects/biryanibet_1.png';
+import biryanibet_2 from '../../assets/images/projects/biryanibet_2.png';
 
 const Projects = () => {
     // Animation on scroll effect
@@ -34,25 +36,25 @@ const Projects = () => {
     // Projects data
     const [projects, setProjects] = useState([
         {
-            id: 'project-alpha',
-            name: 'Project Alpha',
-            description: 'A dynamic web application with real-time data visualization.',
-            fullDescription: 'Project Alpha is a comprehensive web application designed for real-time data analysis and visualization. Built with modern technologies, it offers users an intuitive interface to interact with complex datasets and derive meaningful insights through interactive charts and graphs.',
-            technologies: ['React', 'Node.js', 'Socket.io', 'D3.js'],
+            id: 'biryaniBet',
+            name: 'BiryaniBet',
+            description: 'BiryaniBet is a leading online gaming platform offering a wide range of games and betting options.',
+            fullDescription: 'Project biryaniBet Offers Ludo, Scratch Card, Lottery, and Spin Wheel, with real-time gameplay, interactive mechanics, and an engaging user experience.',
+            technologies: ['React', 'Socket.io', 'Phaser.js'],
             featured: true,
             color: '#4F46E5',
-            images: ['project_alpha_1.jpg', 'project_alpha_2.jpg'],
-            liveLink: 'https://project-alpha.example.com',
-            codeLink: 'https://github.com/rajpatel/project-alpha',
+            images: [biryanibet_1, biryanibet_2],
+            liveLink: 'https://biryani-bet.lc.webdevprojects.cloud',
+            codeLink: '',
             challenges: 'Implementing real-time data synchronization while maintaining high performance across devices was the biggest challenge. Optimized render cycles and WebSocket connections to ensure smooth user experience.',
             year: 2023
         },
         {
-            id: 'game-portal',
-            name: 'Game Portal',
-            description: 'Browser-based gaming platform with multiplayer support.',
-            fullDescription: 'Game Portal is an interactive gaming platform that allows users to play various browser-based games with multiplayer functionality. The platform includes user authentication, game matchmaking, leaderboards, and in-game chat features.',
-            technologies: ['JavaScript', 'Phaser.js', 'Firebase', 'WebRTC'],
+            id: `21-hold'em`,
+            name: `21 Hold'em`,
+            description: "21 Hold'em is a multiplayer poker jack game platform with real-time participation, interactive tables.",
+            fullDescription: 'In addition to playing poker jack with other users, users can create or join private tables with pals on the platform. Plaform offers safe authentication.',
+            technologies: ['React', 'Socket.io', 'Phaser.js'],
             featured: true,
             color: '#10B981',
             images: ['game_portal_1.jpg', 'game_portal_2.jpg'],
